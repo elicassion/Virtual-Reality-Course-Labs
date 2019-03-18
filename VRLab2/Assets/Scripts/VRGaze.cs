@@ -24,7 +24,9 @@ public class VRGaze : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         curObj = null;
-	}
+        UIPanel.gameObject.SetActive(false);
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -55,6 +57,10 @@ public class VRGaze : MonoBehaviour {
                     showItemsInCart();
                 }
             }
+            else
+            {
+                //Debug.Log(_hit.transform.tag);
+            }
         }
 	}
 
@@ -83,11 +89,21 @@ public class VRGaze : MonoBehaviour {
         {
             curObj.transform.localScale = curObjOriScale;
         }
+        if (curHit.CompareTag("ShoppingCart"))
+        {
+            hideItemsInCart();
+        }
         curObj = null;
+    }
+
+    public void hideItemsInCart()
+    {
+        UIPanel.gameObject.SetActive(false);
     }
 
     public void showItemsInCart()
     {
         UIPanel.gameObject.SetActive(true);
+        //UIPanel.transform.position = new Vector3(0, 0, 0);
     }
 }
