@@ -25148,6 +25148,7 @@ GameObject:
   - component: {fileID: 502281642}
   - component: {fileID: 502281644}
   - component: {fileID: 502281645}
+  - component: {fileID: 502281643}
   m_Layer: 0
   m_Name: Apple
   m_TagString: Item
@@ -25171,6 +25172,18 @@ Transform:
   m_Father: {fileID: 1129389233}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &502281643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 502281641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee08f87874da44a4f9c426d0f9e4820c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shoppingCart: {fileID: 2042293140}
 --- !u!135 &502281644
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -29712,6 +29725,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cff4d1e8f953dfd45a56800a42d5b0c8, type: 3}
+      propertyPath: m_TagString
+      value: Item
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cff4d1e8f953dfd45a56800a42d5b0c8, type: 3}
   m_IsPrefabParent: 0
@@ -29778,6 +29795,18 @@ MonoBehaviour:
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!114 &607594500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 607594494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee08f87874da44a4f9c426d0f9e4820c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shoppingCart: {fileID: 2042293140}
 --- !u!1 &608908473
 GameObject:
   m_ObjectHideFlags: 0
@@ -44339,8 +44368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imgGaze: {fileID: 2067353930}
   totalTime: 2
-  gvrStatus: 0
-  gvrTimer: 0
+  distanceOfRay: 10
 --- !u!1 &891491942
 GameObject:
   m_ObjectHideFlags: 0
@@ -58839,6 +58867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fea6f8eea666334aaf9869ad8f7bcda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_IsOver: 0
 --- !u!1 &1177603507
 GameObject:
   m_ObjectHideFlags: 0
@@ -88864,6 +88893,7 @@ GameObject:
   - component: {fileID: 1762519721}
   - component: {fileID: 1762519720}
   - component: {fileID: 1762519719}
+  - component: {fileID: 1762519718}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -88885,6 +88915,21 @@ Transform:
   m_Father: {fileID: 890542842}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1762519718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1762519716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb5dd43baba2d4dc1bab789615567e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raycasterEventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  maxRaycastHits: 64
 --- !u!81 &1762519719
 AudioListener:
   m_ObjectHideFlags: 0
@@ -88900,7 +88945,7 @@ Behaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1762519716}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!124 &1762519721
 Behaviour:
   m_ObjectHideFlags: 0
@@ -88908,7 +88953,7 @@ Behaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1762519716}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1762519722
 Camera:
   m_ObjectHideFlags: 0
@@ -102947,6 +102992,10 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2042239388}
   m_Mesh: {fileID: 4300000, guid: 46ccc9853d2ca354d98c8019a74f692e, type: 3}
+--- !u!1 &2042293140 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100090, guid: ee30f58b81a3e9d45bbf68d07c449b0b, type: 3}
+  m_PrefabInternal: {fileID: 298920657}
 --- !u!1 &2042571749
 GameObject:
   m_ObjectHideFlags: 0
