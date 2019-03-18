@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class VRGaze : MonoBehaviour {
+    Vector3 menuDisFromCamera = Vector3.forward * 1f;
     public Image imgGaze;
     public float totalTime = 1;
     bool gvrStatus;
@@ -104,6 +105,7 @@ public class VRGaze : MonoBehaviour {
     public void showItemsInCart()
     {
         UIPanel.gameObject.SetActive(true);
-        //UIPanel.transform.position = new Vector3(0, 0, 0);
+        UIPanel.transform.position = transform.position + menuDisFromCamera;
+        //UIPanel.LookAt(-transform.position);
     }
 }
