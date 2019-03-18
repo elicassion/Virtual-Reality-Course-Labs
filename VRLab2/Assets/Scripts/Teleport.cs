@@ -9,14 +9,24 @@ public class Teleport : MonoBehaviour {
     bool isInCart = false;
     Vector3 initPosOnShelf;
 
-    public void ToggleCart()
+    public void ToggleCart(Dictionary<string, int> curItems, string itemName)
     {
         if (isInCart)
         {
             removeCart();
+            curItems[itemName] -= 1;
+            if (curItems[itemName] == 0)
+            {
+                curItems.Remove(itemName);
+            }
         } else
         {
             AddToCart();
+            if (!curItems.ContainsKey(itemName))
+            {
+                curItems.Add(itemName, 0);
+            }
+            curItems[itemName] += 1;
         }
     }
 

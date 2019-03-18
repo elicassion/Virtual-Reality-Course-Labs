@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Item
   - ShoppingCart
+  - HideList
+  - Item_apple
+  - Item_beer
+  - Item_banana
+  - Item_chip
   layers:
   - Default
   - TransparentFX
