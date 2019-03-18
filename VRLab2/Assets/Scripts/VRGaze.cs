@@ -5,14 +5,21 @@ using UnityEngine.UI;
 
 public class VRGaze : MonoBehaviour {
     public Image imgGaze;
-    public float totalTime = 2;
+    public float totalTime = 1;
     bool gvrStatus;
     float gvrTimer;
 
     public int distanceOfRay = 10;
     private RaycastHit _hit;
 
+    public GameObject curItemsUIList;
+    Dictionary<string, int> curItems;
+
+    Transform curHit;
     GameObject curObj;
+    Vector3 curObjOriScale;
+
+    [SerializeField] Transform UIPanel;
 
 	// Use this for initialization
 	void Start () {
@@ -28,26 +35,43 @@ public class VRGaze : MonoBehaviour {
         }
 
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        
         if (Physics.Raycast(ray, out _hit, distanceOfRay))
         {
+            //curObj = _hit.transform.gameObject;
             if (_hit.transform.CompareTag("Item"))
             {
-                curObj = _hit.transform.gameObject;
-                curObj.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
                 if (imgGaze.fillAmount == 1)
                 {
-                    curObj.transform.localScale = new Vector3(1, 1, 1);
+                    // This re-scale may not be needed
+                    //curObj.transform.localScale = curObjOriScale;
                     curObj.GetComponent<Teleport>().ToggleCart();
                 }
             }
-            
+            if (_hit.transform.CompareTag("ShoppingCart"))
+            {
+                //curObj = _hit.transform.gameObject
+                if (imgGaze.fillAmount == 1)
+                {
+                    showItemsInCart();
+                }
+            }
         }
 	}
 
     public void GVROn()
     {
         gvrStatus = true;
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        if (Physics.Raycast(ray, out _hit, distanceOfRay))
+        {
+            curHit = _hit.transform;
+            curObj = curHit.gameObject;
+            if (curHit.CompareTag("Item"))
+            {
+                curObjOriScale = curObj.transform.localScale;
+                curObj.transform.localScale *= 1.2f;
+            }
+        }
     }
 
     public void GVROff()
@@ -55,7 +79,15 @@ public class VRGaze : MonoBehaviour {
         gvrStatus = false;
         gvrTimer = 0;
         imgGaze.fillAmount = 0;
-        curObj.transform.localScale = new Vector3(1, 1, 1);
+        if (curHit.CompareTag("Item"))
+        {
+            curObj.transform.localScale = curObjOriScale;
+        }
         curObj = null;
+    }
+
+    public void showItemsInCart()
+    {
+        UIPanel.gameObject.SetActive(true);
     }
 }
