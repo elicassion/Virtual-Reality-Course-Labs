@@ -112,6 +112,7 @@ public class VRGaze : MonoBehaviour {
                 curObjOriScale = curObj.transform.localScale;
                 curObj.transform.localScale *= 1.2f;
                 curObj.GetComponent<MeshRenderer>().material.color = Color.blue;
+                curObj.GetComponent<Teleport>().showProximityPath();
             }
             //if (curHit.)
         }

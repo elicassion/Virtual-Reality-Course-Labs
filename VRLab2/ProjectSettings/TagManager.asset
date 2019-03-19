@@ -11,6 +11,12 @@ TagManager:
   - Item_beer
   - Item_banana
   - Item_chip
+  - Item_avocado
+  - Item_broccoli
+  - Item_cucumber
+  - Item_cheese
+  - Item_carrot
+  - Item_bread
   layers:
   - Default
   - TransparentFX

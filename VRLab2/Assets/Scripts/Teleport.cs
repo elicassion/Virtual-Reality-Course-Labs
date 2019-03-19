@@ -8,6 +8,26 @@ public class Teleport : MonoBehaviour {
 
     bool isInCart = false;
     Vector3 initPosOnShelf;
+    LineRenderer pathLine;
+
+    public void showProximityPath()
+    {
+        Vector3 curPos = transform.position;
+        Vector3 anotherPos;
+        if (isInCart)
+        {
+            anotherPos = initPosOnShelf;
+        }
+        else
+        {
+            anotherPos = shoppingCart.transform.position;
+        }
+        float dist = Vector3.Distance(curPos, anotherPos);
+        if (dist < 10)
+        {
+            pathLine.SetPositions(new Vector3[2] { curPos, anotherPos});
+        }
+    }
 
     public void ToggleCart(Dictionary<string, int> curItems, string itemName)
     {
@@ -48,6 +68,8 @@ public class Teleport : MonoBehaviour {
 	void Start () {
         initPosOnShelf = transform.position;
         isInCart = false;
+        pathLine = GameObject.Find("PathLine").GetComponent<LineRenderer>();
+        
 	}
 	
 	// Update is called once per frame
