@@ -50,6 +50,11 @@ public class Teleport : MonoBehaviour {
         }
     }
 
+    public void moveWithCart(Vector3 vec)
+    {
+        transform.Translate(vec);
+    }
+
     public void removeCart()
     {
         transform.position = initPosOnShelf;
