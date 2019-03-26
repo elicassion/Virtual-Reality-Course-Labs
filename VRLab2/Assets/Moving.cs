@@ -5,10 +5,12 @@ using UnityEngine;
 public class Moving : MonoBehaviour {
     float speed = 1.0f;
 
+    GameObject mwCamera;
+
 	// Use this for initialization
 	void Start () {
-		
-	}
+        mwCamera = GameObject.Find("Miniworld Camera");
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -28,5 +30,7 @@ public class Moving : MonoBehaviour {
         {
             transform.Translate(Vector3.right * speed * Time.deltaTime);
         }
+        mwCamera.transform.position = transform.position + new Vector3(0, 10, 0);
+        mwCamera.transform.eulerAngles = new Vector3(90, 0, 0);
     }
 }

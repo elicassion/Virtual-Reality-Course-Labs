@@ -26,6 +26,8 @@ TagManager:
   - Item_original cheese
   - Item_white cheese
   - Item_magic cheese
+  - Item_reduced fat milk
+  - Item_soda
   layers:
   - Default
   - TransparentFX
