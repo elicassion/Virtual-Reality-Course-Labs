@@ -17,6 +17,15 @@ TagManager:
   - Item_cheese
   - Item_carrot
   - Item_bread
+  - Item_chip original flavor
+  - Item_chip tomato flavor
+  - Item_chip onion flavor
+  - Item_light beer
+  - Item_brown beer
+  - Item_dark beer
+  - Item_original cheese
+  - Item_white cheese
+  - Item_magic cheese
   layers:
   - Default
   - TransparentFX

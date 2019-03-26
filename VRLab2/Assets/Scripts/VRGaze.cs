@@ -35,6 +35,9 @@ public class VRGaze : MonoBehaviour {
     public GameObject buttonPrefab;
     Text shoplistTextObj;
 
+    Vector3 cartInnerSize; // 3.1 * 3.7
+    
+
 	// Use this for initialization
 	void Start () {
         curObj = null;
@@ -42,6 +45,8 @@ public class VRGaze : MonoBehaviour {
         shoppingList.Add("apple", 2);
         shoppingList.Add("banana", 1);
         shoppingList.Add("beer", 1);
+        cartInnerSize = GameObject.Find("fgh").GetComponent<Renderer>().bounds.size;
+        //Debug.Log("cart size"+cartInnerSize);
     }
 	
 	// Update is called once per frame
@@ -70,9 +75,10 @@ public class VRGaze : MonoBehaviour {
                 // pick/return item
                 if (Input.GetKey(KeyCode.B))
                 {
+                    //curObj.transform.localScale = curObjOriScale;
                     curObj.GetComponent<Teleport>().ToggleCart(curItems, itemName);
                     // This re-scale may not be needed
-                    curObj.transform.localScale = curObjOriScale;
+                    
                 }
             }
             if (_hit.transform.tag.StartsWith("HideList"))
@@ -193,6 +199,7 @@ public class VRGaze : MonoBehaviour {
             //MakeButton(btnText);
             listStr += String.Format("{0} ({1}/{2})\n\n", itemName, curNum, requiredNum);
         }
+        // add items that in cart but not in shopping list
         shopListText.text = listStr;
     }
 

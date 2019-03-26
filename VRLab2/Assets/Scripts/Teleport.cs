@@ -9,6 +9,12 @@ public class Teleport : MonoBehaviour {
     bool isInCart = false;
     Vector3 initPosOnShelf;
     LineRenderer pathLine;
+    Transform oriParent;
+    Vector3 oriScale;
+    GameObject player;
+
+    float xOffset = 0.5f;
+    float zOffset = 0.7f;
 
     public void showProximityPath()
     {
@@ -41,13 +47,24 @@ public class Teleport : MonoBehaviour {
             }
         } else
         {
-            AddToCart();
+            int curItemsCount = countItemsInCart(curItems);
+            AddToCart(curItemsCount);
             if (!curItems.ContainsKey(itemName))
             {
                 curItems.Add(itemName, 0);
             }
             curItems[itemName] += 1;
         }
+    }
+
+    public int countItemsInCart(Dictionary<string, int> curItems)
+    {
+        int count = 0;
+        foreach(KeyValuePair<string, int> kv in curItems)
+        {
+            count += kv.Value;
+        }
+        return count;
     }
 
     public void moveWithCart(Vector3 vec)
@@ -58,14 +75,19 @@ public class Teleport : MonoBehaviour {
     public void removeCart()
     {
         transform.position = initPosOnShelf;
+        transform.SetParent(oriParent);
         isInCart = false;
     }
 
-    public void AddToCart()
+    public void AddToCart(int curItemsCount)
     {
-        transform.position = new Vector3(shoppingCart.transform.position.x,
+        float itemXOffset = curItemsCount / 4 * xOffset - 0.7f;
+        float itemZOffset = curItemsCount % 4 * zOffset;
+        transform.localScale = oriScale;
+        transform.position = new Vector3(shoppingCart.transform.position.x+itemXOffset,
             shoppingCart.transform.position.y + 0.2f,
-            shoppingCart.transform.position.z);
+            shoppingCart.transform.position.z + itemZOffset);
+        transform.SetParent(player.transform);
         isInCart = true;
     }
 
@@ -74,7 +96,9 @@ public class Teleport : MonoBehaviour {
         initPosOnShelf = transform.position;
         isInCart = false;
         pathLine = GameObject.Find("PathLine").GetComponent<LineRenderer>();
-        
+        oriParent = transform.parent;
+        oriScale = transform.localScale;
+        player = GameObject.Find("Player");
 	}
 	
 	// Update is called once per frame
