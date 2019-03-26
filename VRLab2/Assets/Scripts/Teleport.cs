@@ -37,6 +37,7 @@ public class Teleport : MonoBehaviour {
 
     public void ToggleCart(Dictionary<string, int> curItems, string itemName)
     {
+        Debug.Log("[Item Name] " + itemName);
         if (isInCart)
         {
             removeCart();
@@ -81,7 +82,7 @@ public class Teleport : MonoBehaviour {
 
     public void AddToCart(int curItemsCount)
     {
-        float itemXOffset = curItemsCount / 4 * xOffset - 0.7f;
+        float itemXOffset = curItemsCount / 4 * xOffset - 0.3f;
         float itemZOffset = curItemsCount % 4 * zOffset;
         transform.localScale = oriScale;
         transform.position = new Vector3(shoppingCart.transform.position.x+itemXOffset,

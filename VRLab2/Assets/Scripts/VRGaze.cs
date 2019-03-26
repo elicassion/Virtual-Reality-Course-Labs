@@ -42,9 +42,12 @@ public class VRGaze : MonoBehaviour {
 	void Start () {
         curObj = null;
         UIPanel.gameObject.SetActive(false);
-        shoppingList.Add("apple", 2);
-        shoppingList.Add("banana", 1);
-        shoppingList.Add("beer", 1);
+        shoppingList.Add("chip tomato flavor", 2);
+        shoppingList.Add("chip onion flavor", 1);
+        shoppingList.Add("reduced fat milk", 1);
+        shoppingList.Add("light beer", 1);
+        shoppingList.Add("avocado", 2);
+        shoppingList.Add("white cheese", 3);
         cartInnerSize = GameObject.Find("fgh").GetComponent<Renderer>().bounds.size;
         //Debug.Log("cart size"+cartInnerSize);
     }
