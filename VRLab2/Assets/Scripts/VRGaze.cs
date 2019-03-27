@@ -76,7 +76,7 @@ public class VRGaze : MonoBehaviour {
                 string itemName = _hit.transform.tag.Split('_')[1];
                 //Debug.Log("[Item Name] " + name);
                 // pick/return item
-                if (Input.GetKey(KeyCode.B))
+                if (Input.GetKey(KeyCode.B) || Input.GetKey(KeyCode.Joystick1Button1))
                 {
                     //curObj.transform.localScale = curObjOriScale;
                     curObj.GetComponent<Teleport>().ToggleCart(curItems, itemName);
@@ -99,7 +99,7 @@ public class VRGaze : MonoBehaviour {
         // pop-up shopping cart && shopping list
         // (gaze on cart yields cart
         // other for shopping list -- not now)
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.Joystick1Button0))
         {
             showItemsInCart();
         }
