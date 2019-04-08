@@ -94,10 +94,10 @@ public class Teleport : MonoBehaviour {
         switch (carDirection)
         {
             case Direction.Z_FORWORD:
-                if (carTransform.position.z >= 15.1f)
+                if (carTransform.position.z >= 0.3f)
                 {
                     turnYClockwise90(carTransform);
-                    carDirection = Direction.X_FORWORD;
+                    carDirection = Direction.X_BACKWORD;
                     break;
                 }
                 break;
@@ -118,7 +118,7 @@ public class Teleport : MonoBehaviour {
                 }
                 break;
             case Direction.X_BACKWORD:
-                if (carTransform.position.x <= -12.1f)
+                if (carTransform.position.x <= -0.3f)
                 {
                     turnYClockwise90(carTransform);
                     carDirection = Direction.Z_FORWORD;
