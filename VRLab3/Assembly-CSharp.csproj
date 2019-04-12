@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CarMotion.cs" />
+     <Compile Include="Assets\Scripts\DeployStage.cs" />
      <Compile Include="Assets\Scripts\UIControl.cs" />
      <Compile Include="Assets\SimpleTouchController\Scripts\InfoTouches.cs" />
      <Compile Include="Assets\SimpleTouchController\Scripts\PlayerMoveController.cs" />
@@ -65,6 +66,7 @@
      <None Include="Assets\Vuforia\Shaders\VertexLitWithZ.shader" />
      <None Include="Assets\Vuforia\Shaders\OutlineOpaque.shader" />
      <None Include="Assets\StreamingAssets\Vuforia\VuforiaMars_Object_OT.xml" />
+     <None Include="Assets\Super Spitfire\readme.txt" />
      <None Include="Assets\Vuforia\Shaders\DepthMask.shader" />
      <None Include="Assets\StreamingAssets\Vuforia\VuforiaMars_Images.xml" />
      <None Include="Assets\Vuforia\Shaders\BrightTexture.shader" />
