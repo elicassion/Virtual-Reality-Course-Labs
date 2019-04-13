@@ -65,6 +65,10 @@ public class UIControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        PlacedObjs1 = new Stack<GameObject>();
+        PlacedObjs2 = new Stack<GameObject>();
+
+
         //BuildModeBtn = GameObject.Find("BuildModeBtn");
         //CarBtn = GameObject.Find("CarBtn");
         //CarObj = GameObject.Find("CarObj");
@@ -135,8 +139,7 @@ public class UIControl : MonoBehaviour {
         buildingPlaneNum = 0;
         curPlane = Plane1;
         showObjButtons();
-        BackToPlanesBtn.SetActive(true);
-        ExitBuildModeBtn.SetActive(false);
+        showObjEditButtons();
         hidePlaneButtons();
     }
 
@@ -145,8 +148,7 @@ public class UIControl : MonoBehaviour {
         buildingPlaneNum = 1;
         curPlane = Plane2;
         showObjButtons();
-        BackToPlanesBtn.SetActive(true);
-        ExitBuildModeBtn.SetActive(false);
+        showObjEditButtons();
         hidePlaneButtons();
     }
 
@@ -163,6 +165,7 @@ public class UIControl : MonoBehaviour {
     {
         isBuildingPlane = true;
         toggleObjButtons("PLANE");
+        
     }
 
     public void CarBtnClick()
@@ -205,12 +208,14 @@ public class UIControl : MonoBehaviour {
         currentObj = HotairballoonClone;
         curObjType = "Air";
         toggleObjButtons("HOTAIRBALLOON");
+        
     }
 
     public void BackToPlanesBtnClick()
     {
         hideObjButtons();
         BackToPlanesBtn.SetActive(false);
+        SaveCurrentObjBtn.SetActive(false);
         showPlaneButtons();
         ExitBuildModeBtn.SetActive(true);
     }
@@ -232,9 +237,11 @@ public class UIControl : MonoBehaviour {
         currentObj = null;
         curObjType = "NULL";
         showObjButtons();
-        DiscardCurrentObjBtn.SetActive(false);
-        SaveCurrentObjBtn.SetActive(false);
+        showObjEditButtons();
+        hideThisObjEditButtons();
     }
+
+    
 
     public void DiscardCurrentObjBtnClick()
     {
@@ -242,8 +249,8 @@ public class UIControl : MonoBehaviour {
         currentObj = null;
         curObjType = "NULL";
         showObjButtons();
-        DiscardCurrentObjBtn.SetActive(false);
-        SaveCurrentObjBtn.SetActive(false);
+        hideThisObjEditButtons();
+        showObjEditButtons();
     }
 
     public void RemoveLastObjBtnClick()
@@ -271,7 +278,10 @@ public class UIControl : MonoBehaviour {
 
     public void SaveCurPlaneBtnClick()
     {
-
+        isBuildingPlane = false;
+        SaveCurrentPlaneBtn.SetActive(false);
+        showObjButtons();
+        BackToPlanesBtn.SetActive(true);
     }
 
 
@@ -309,23 +319,29 @@ public class UIControl : MonoBehaviour {
 
     void toggleObjButtons(string objName)
     {
+        hideObjEditButtons();
         bool[] status = new bool[5] { false, false, false, false, false };
         switch (objName)
         {
             case "PLANE":
                 status[0] = true;
+                SaveCurrentPlaneBtn.SetActive(true);
                 break;
             case "CAR":
                 status[1] = true;
+                showThisObjEditButtons();
                 break;
             case "HOUSE":
                 status[2] = true;
+                showThisObjEditButtons();
                 break;
             case "AIRPLANE":
                 status[3] = true;
+                showThisObjEditButtons();
                 break;
             case "HOTAIRBALLOON":
                 status[4] = true;
+                showThisObjEditButtons();
                 break;
             default:
                 break;
@@ -335,7 +351,7 @@ public class UIControl : MonoBehaviour {
         HouseBtn.SetActive(status[2]);
         AirplaneBtn.SetActive(status[3]);
         HotairballoonBtn.SetActive(status[4]);
-        SaveCurrentObjBtn.SetActive(true);
+        BackToPlanesBtn.SetActive(false);
     }
 
     void showObjButtons()
@@ -354,5 +370,31 @@ public class UIControl : MonoBehaviour {
         HouseBtn.SetActive(false);
         AirplaneBtn.SetActive(false);
         HotairballoonBtn.SetActive(false);
+    }
+
+    void showObjEditButtons()
+    {
+        BackToPlanesBtn.SetActive(true);
+        RemovelastObjBtn.SetActive(true);
+        ExitBuildModeBtn.SetActive(false);
+    }
+
+    void hideObjEditButtons()
+    {
+        BackToPlanesBtn.SetActive(false);
+        RemovelastObjBtn.SetActive(false);
+        ExitBuildModeBtn.SetActive(true);
+    }
+
+    void showThisObjEditButtons()
+    {
+        DiscardCurrentObjBtn.SetActive(true);
+        SaveCurrentObjBtn.SetActive(true);
+    }
+
+    void hideThisObjEditButtons()
+    {
+        DiscardCurrentObjBtn.SetActive(false);
+        SaveCurrentObjBtn.SetActive(false);
     }
 }
