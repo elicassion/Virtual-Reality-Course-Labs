@@ -9,6 +9,9 @@ public class UIControl : MonoBehaviour {
     public GameObject Plane2;
 
     public GameObject CarPrefab;
+    public GameObject HousePrefab;
+    public GameObject AirplanePrefab;
+    public GameObject HotairballoonPrefab;
 
     public GameObject XZNav;
     public GameObject XZRot;
@@ -35,10 +38,10 @@ public class UIControl : MonoBehaviour {
     public GameObject SaveCurrentPlaneBtn;
     
 
-    public GameObject CarObj;
-    public GameObject HouseObj;
-    public GameObject AirplaneObj;
-    public GameObject HotairballoonObj;
+    //public GameObject CarObj;
+    //public GameObject HouseObj;
+    //public GameObject AirplaneObj;
+    //public GameObject HotairballoonObj;
    
 
     public bool isBuildMode;
@@ -72,10 +75,10 @@ public class UIControl : MonoBehaviour {
         //BuildModeBtn = GameObject.Find("BuildModeBtn");
         //CarBtn = GameObject.Find("CarBtn");
         //CarObj = GameObject.Find("CarObj");
-        CarObj.SetActive(false);
-        HouseObj.SetActive(false);
-        AirplaneObj.SetActive(false);
-        HotairballoonObj.SetActive(false);
+        //CarObj.SetActive(false);
+        //HouseObj.SetActive(false);
+        //AirplaneObj.SetActive(false);
+        //HotairballoonObj.SetActive(false);
 
 
         BuildPlane1Btn.SetActive(false);
@@ -183,8 +186,8 @@ public class UIControl : MonoBehaviour {
     public void HouseBtnClick()
     {
         isBuildingObj = true;
-        GameObject HouseClone = GameObject.Instantiate(HouseObj);
-        HouseClone.SetActive(true);
+        GameObject HouseClone = GameObject.Instantiate(HousePrefab, new Vector3(0, 0, 0), Quaternion.identity, curPlane.transform) as GameObject;
+        //HouseClone.SetActive(true);
         currentObj = HouseClone;
         curObjType = "Ground";
         toggleObjButtons("HOUSE");
@@ -193,8 +196,8 @@ public class UIControl : MonoBehaviour {
     public void AirplaneBtnClick()
     {
         isBuildingObj = true;
-        GameObject AirplaneClone = GameObject.Instantiate(AirplaneObj);
-        AirplaneClone.SetActive(true);
+        GameObject AirplaneClone = GameObject.Instantiate(AirplanePrefab, new Vector3(0, 0.7f, 0), Quaternion.identity, curPlane.transform) as GameObject;
+        //AirplaneClone.SetActive(true);
         currentObj = AirplaneClone;
         curObjType = "Air";
         toggleObjButtons("AIRPLANE");
@@ -203,12 +206,27 @@ public class UIControl : MonoBehaviour {
     public void HotairballoonBtnClick()
     {
         isBuildingObj = true;
-        GameObject HotairballoonClone = GameObject.Instantiate(HotairballoonObj);
-        HotairballoonClone.SetActive(true);
+        GameObject HotairballoonClone = GameObject.Instantiate(HotairballoonPrefab, new Vector3(0, 0.3f, 0), Quaternion.identity, curPlane.transform) as GameObject;
+        //HotairballoonClone.SetActive(true);
         currentObj = HotairballoonClone;
         curObjType = "Air";
         toggleObjButtons("HOTAIRBALLOON");
         
+    }
+
+
+    public void RemoveLastObjBtnClick()
+    {
+        GameObject g;
+        if (buildingPlaneNum == 0)
+        {
+            g = PlacedObjs1.Pop();
+        }
+        else
+        {
+            g = PlacedObjs2.Pop();
+        }
+        Destroy(g);
     }
 
     public void BackToPlanesBtnClick()
@@ -253,23 +271,7 @@ public class UIControl : MonoBehaviour {
         showObjEditButtons();
     }
 
-    public void RemoveLastObjBtnClick()
-    {
-        GameObject g;
-        if (buildingPlaneNum == 0)
-        {
-            g = PlacedObjs1.Pop();
-        }
-        else
-        {
-            g = PlacedObjs2.Pop();
-        }
-        Destroy(g);
-    }
 
-    
-
-    
 
     public void DefinePlaneBtnClick()
     {
@@ -301,6 +303,18 @@ public class UIControl : MonoBehaviour {
                 Destroy(prevAnchor);
             }
             prevAnchor = anchor;
+        }
+    }
+
+    public void DayNightModeToggle(bool dayActivated)
+    {
+        if (dayActivated)
+        {
+
+        }
+        else
+        {
+
         }
     }
 
