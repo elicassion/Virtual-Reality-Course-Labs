@@ -58,7 +58,8 @@ public class UIControl : MonoBehaviour {
     int buildingPlaneNum = -1;
     
     GameObject curPlane;
-    GameObject prevAnchor;
+    GameObject prevAnchor1;
+    GameObject prevAnchor2;
 
 
     float UIControlRate = 0.005f;
@@ -174,10 +175,10 @@ public class UIControl : MonoBehaviour {
     public void CarBtnClick()
     {
         isBuildingObj = true;
-        GameObject CarClone = GameObject.Instantiate(CarPrefab, new Vector3(0.2f, 0, -0.2f), Quaternion.identity, curPlane.transform) as GameObject;
+        GameObject CarClone = GameObject.Instantiate(CarPrefab, new Vector3(0.2f, 0.02f, -0.2f), Quaternion.identity, curPlane.transform) as GameObject;
         CarClone.transform.localScale = new Vector3(0.04f, 0.04f, 0.04f);
         //CarClone.transform.parent = ARPlane.transform;
-       // CarClone.SetActive(true);
+        CarClone.SetActive(true);
         currentObj = CarClone;
         curObjType = "Ground";
         toggleObjButtons("CAR");
@@ -186,8 +187,8 @@ public class UIControl : MonoBehaviour {
     public void HouseBtnClick()
     {
         isBuildingObj = true;
-        GameObject HouseClone = GameObject.Instantiate(HousePrefab, new Vector3(0, 0, 0), Quaternion.identity, curPlane.transform) as GameObject;
-        //HouseClone.SetActive(true);
+        GameObject HouseClone = GameObject.Instantiate(HousePrefab, new Vector3(0.0f, 0.02f, 0.0f), Quaternion.identity, curPlane.transform) as GameObject;
+        HouseClone.SetActive(true);
         currentObj = HouseClone;
         curObjType = "Ground";
         toggleObjButtons("HOUSE");
@@ -196,8 +197,8 @@ public class UIControl : MonoBehaviour {
     public void AirplaneBtnClick()
     {
         isBuildingObj = true;
-        GameObject AirplaneClone = GameObject.Instantiate(AirplanePrefab, new Vector3(0, 0.7f, 0), Quaternion.identity, curPlane.transform) as GameObject;
-        //AirplaneClone.SetActive(true);
+        GameObject AirplaneClone = GameObject.Instantiate(AirplanePrefab, new Vector3(0.0f, 0.7f, 0.0f), Quaternion.identity, curPlane.transform) as GameObject;
+        AirplaneClone.SetActive(true);
         currentObj = AirplaneClone;
         curObjType = "Air";
         toggleObjButtons("AIRPLANE");
@@ -206,8 +207,8 @@ public class UIControl : MonoBehaviour {
     public void HotairballoonBtnClick()
     {
         isBuildingObj = true;
-        GameObject HotairballoonClone = GameObject.Instantiate(HotairballoonPrefab, new Vector3(0, 0.3f, 0), Quaternion.identity, curPlane.transform) as GameObject;
-        //HotairballoonClone.SetActive(true);
+        GameObject HotairballoonClone = GameObject.Instantiate(HotairballoonPrefab, new Vector3(0.0f, 0.3f, 0.0f), Quaternion.identity, curPlane.transform) as GameObject;
+        HotairballoonClone.SetActive(true);
         currentObj = HotairballoonClone;
         curObjType = "Air";
         toggleObjButtons("HOTAIRBALLOON");
@@ -264,6 +265,7 @@ public class UIControl : MonoBehaviour {
     public void DiscardCurrentObjBtnClick()
     {
         isBuildingObj = false;
+        Destroy(currentObj);
         currentObj = null;
         curObjType = "NULL";
         showObjButtons();
@@ -298,11 +300,23 @@ public class UIControl : MonoBehaviour {
                 curPlane.transform.localRotation = Quaternion.identity;
                 curPlane.SetActive(true);
             }
-            if (prevAnchor != null)
+            switch (buildingPlaneNum)
             {
-                Destroy(prevAnchor);
+                case 0:
+                    if (prevAnchor1 != null)
+                    {
+                        Destroy(prevAnchor1);
+                    }
+                    prevAnchor1 = anchor;
+                    break;
+                case 1:
+                    if (prevAnchor2 != null)
+                    {
+                        Destroy(prevAnchor2);
+                    }
+                    prevAnchor2 = anchor;
+                    break;
             }
-            prevAnchor = anchor;
         }
     }
 

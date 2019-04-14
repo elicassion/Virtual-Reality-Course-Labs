@@ -15,7 +15,8 @@ public class CarMotion : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        transform.gameObject.SetActive(false);
+        UIController = GameObject.Find("Camera UI");
+        //transform.gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame

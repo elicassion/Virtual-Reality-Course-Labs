@@ -51,10 +51,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AirplaneMotion.cs" />
-     <Compile Include="Assets\HotairballoonMotion.cs" />
+     <Compile Include="Assets\Scripts\AirplaneMotion.cs" />
      <Compile Include="Assets\Scripts\CarMotion.cs" />
      <Compile Include="Assets\Scripts\DeployStage.cs" />
+     <Compile Include="Assets\Scripts\HotairballoonMotion.cs" />
      <Compile Include="Assets\Scripts\UIControl.cs" />
      <Compile Include="Assets\SimpleTouchController\Scripts\InfoTouches.cs" />
      <Compile Include="Assets\SimpleTouchController\Scripts\PlayerMoveController.cs" />
@@ -73,6 +73,7 @@
      <None Include="Assets\StreamingAssets\Vuforia\VuforiaMars_Images.xml" />
      <None Include="Assets\Vuforia\Shaders\BrightTexture.shader" />
      <None Include="Assets\StreamingAssets\Vuforia\VuforiaMars_VuMark.xml" />
+     <None Include="Assets\QuadShadowShader.shader" />
      <None Include="Assets\Vuforia\Shaders\DepthContour.shader" />
      <None Include="Assets\Vuforia\Shaders\Text3D.shader" />
  <Reference Include="UnityEngine.CoreModule">
