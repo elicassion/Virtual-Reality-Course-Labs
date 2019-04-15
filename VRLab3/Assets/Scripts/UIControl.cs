@@ -36,12 +36,14 @@ public class UIControl : MonoBehaviour {
     public GameObject SaveCurrentObjBtn;
     public GameObject DiscardCurrentObjBtn;
     public GameObject SaveCurrentPlaneBtn;
-    
+
 
     //public GameObject CarObj;
     //public GameObject HouseObj;
     //public GameObject AirplaneObj;
     //public GameObject HotairballoonObj;
+
+    public GameObject LightSource;
    
 
     public bool isBuildMode;
@@ -145,6 +147,7 @@ public class UIControl : MonoBehaviour {
         showObjButtons();
         showObjEditButtons();
         hidePlaneButtons();
+        ExitBuildModeBtn.SetActive(false);
     }
 
     public void BuildPlane2BtnClick()
@@ -154,6 +157,7 @@ public class UIControl : MonoBehaviour {
         showObjButtons();
         showObjEditButtons();
         hidePlaneButtons();
+        ExitBuildModeBtn.SetActive(false);
     }
 
     public void ExitBuildModeBtnClick()
@@ -236,7 +240,7 @@ public class UIControl : MonoBehaviour {
         BackToPlanesBtn.SetActive(false);
         SaveCurrentObjBtn.SetActive(false);
         showPlaneButtons();
-        ExitBuildModeBtn.SetActive(true);
+        //ExitBuildModeBtn.SetActive(true);
     }
 
 
@@ -324,11 +328,11 @@ public class UIControl : MonoBehaviour {
     {
         if (dayActivated)
         {
-
+            LightSource.GetComponent<Light>().intensity = 1.0f;
         }
         else
         {
-
+            LightSource.GetComponent<Light>().intensity = 0.1f;
         }
     }
 
