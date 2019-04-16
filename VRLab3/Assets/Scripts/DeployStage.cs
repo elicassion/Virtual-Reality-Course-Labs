@@ -20,7 +20,7 @@ public class DeployStage : MonoBehaviour {
             Debug.Log("AnchorStage must be specified");
             return;
         }
-        AnchorStage.SetActive(false);
+        //AnchorStage.SetActive(false);
 
         uic = UIControlObj.GetComponent<UIControl>();
     }
@@ -47,8 +47,8 @@ public class DeployStage : MonoBehaviour {
             Debug.LogWarning("Hit test is invalid or AnchorStage not set");
             return;
         }
-
-        if (UIControlObj.GetComponent<UIControl>().isBuildingPlane)
+        Debug.Log("Press");
+        if (uic.isBuildingPlane)
         {
             var anchor = _deviceTracker.CreatePlaneAnchor(Guid.NewGuid().ToString(), result);
             uic.SetPlaneAnchor(anchor);

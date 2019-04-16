@@ -71,6 +71,9 @@ public class UIControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        prevAnchor1 = null;
+        prevAnchor2 = null;
+
         PlacedObjs1 = new Stack<GameObject>();
         PlacedObjs2 = new Stack<GameObject>();
 
@@ -82,7 +85,8 @@ public class UIControl : MonoBehaviour {
         //HouseObj.SetActive(false);
         //AirplaneObj.SetActive(false);
         //HotairballoonObj.SetActive(false);
-
+        Plane1.SetActive(false);
+        Plane2.SetActive(false);
 
         BuildPlane1Btn.SetActive(false);
         BuildPlane2Btn.SetActive(false);
@@ -131,7 +135,7 @@ public class UIControl : MonoBehaviour {
             
         }
     }
-
+ 
     public void BuildModeBtnClick()
     {
         isBuildMode = true;
@@ -179,7 +183,12 @@ public class UIControl : MonoBehaviour {
     public void CarBtnClick()
     {
         isBuildingObj = true;
-        GameObject CarClone = GameObject.Instantiate(CarPrefab, new Vector3(0.2f, 0.02f, -0.2f), Quaternion.identity, curPlane.transform) as GameObject;
+        GameObject CarClone = null;
+        //CarClone = GameObject.Instantiate(CarPrefab, new Vector3(0.0f, 0.0000001f, -0.0f), Quaternion.identity, curPlane.transform) as GameObject;
+        CarClone = GameObject.Instantiate(CarPrefab) as GameObject;
+        CarClone.transform.parent = curPlane.transform;
+        CarClone.transform.localPosition = new Vector3(0, 0, 0);
+        Debug.Log(curPlane.name);
         CarClone.transform.localScale = new Vector3(0.04f, 0.04f, 0.04f);
         //CarClone.transform.parent = ARPlane.transform;
         CarClone.SetActive(true);
@@ -191,7 +200,12 @@ public class UIControl : MonoBehaviour {
     public void HouseBtnClick()
     {
         isBuildingObj = true;
-        GameObject HouseClone = GameObject.Instantiate(HousePrefab, new Vector3(0.0f, 0.02f, 0.0f), Quaternion.identity, curPlane.transform) as GameObject;
+        GameObject HouseClone;
+        //GameObject HouseClone = GameObject.Instantiate(HousePrefab, new Vector3(0.0f, 0.0000001f, 0.0f), Quaternion.identity, curPlane.transform) as GameObject;
+        HouseClone = GameObject.Instantiate(HousePrefab);
+        HouseClone.transform.parent = curPlane.transform;
+        HouseClone.transform.localPosition = new Vector3(0, 0, 0);
+        Debug.Log(curPlane.name);
         HouseClone.SetActive(true);
         currentObj = HouseClone;
         curObjType = "Ground";
@@ -201,7 +215,12 @@ public class UIControl : MonoBehaviour {
     public void AirplaneBtnClick()
     {
         isBuildingObj = true;
-        GameObject AirplaneClone = GameObject.Instantiate(AirplanePrefab, new Vector3(0.0f, 0.7f, 0.0f), Quaternion.identity, curPlane.transform) as GameObject;
+        GameObject AirplaneClone;
+        //GameObject AirplaneClone = GameObject.Instantiate(AirplanePrefab, new Vector3(0.0f, 0.3f, 0.0f), Quaternion.identity, curPlane.transform) as GameObject;
+        AirplaneClone = GameObject.Instantiate(AirplanePrefab);
+        AirplaneClone.transform.parent = curPlane.transform;
+        AirplaneClone.transform.localPosition = new Vector3(0, 0.3f, 0);
+        Debug.Log(curPlane.name);
         AirplaneClone.SetActive(true);
         currentObj = AirplaneClone;
         curObjType = "Air";
@@ -211,7 +230,11 @@ public class UIControl : MonoBehaviour {
     public void HotairballoonBtnClick()
     {
         isBuildingObj = true;
-        GameObject HotairballoonClone = GameObject.Instantiate(HotairballoonPrefab, new Vector3(0.0f, 0.3f, 0.0f), Quaternion.identity, curPlane.transform) as GameObject;
+        GameObject HotairballoonClone;
+        //GameObject HotairballoonClone = GameObject.Instantiate(HotairballoonPrefab, new Vector3(0.0f, 0.2f, 0.0f), Quaternion.identity, curPlane.transform) as GameObject;
+        HotairballoonClone = GameObject.Instantiate(HotairballoonPrefab);
+        HotairballoonClone.transform.parent = curPlane.transform;
+        HotairballoonClone.transform.localPosition = new Vector3(0, 0.2f, 0);
         HotairballoonClone.SetActive(true);
         currentObj = HotairballoonClone;
         curObjType = "Air";
@@ -240,7 +263,7 @@ public class UIControl : MonoBehaviour {
         BackToPlanesBtn.SetActive(false);
         SaveCurrentObjBtn.SetActive(false);
         showPlaneButtons();
-        //ExitBuildModeBtn.SetActive(true);
+        ExitBuildModeBtn.SetActive(true);
     }
 
 
@@ -297,6 +320,7 @@ public class UIControl : MonoBehaviour {
     {
         if (isBuildingPlane)
         {
+            Debug.Log(buildingPlaneNum);
             if (anchor != null)
             {
                 curPlane.transform.parent = anchor.transform;
@@ -328,11 +352,11 @@ public class UIControl : MonoBehaviour {
     {
         if (dayActivated)
         {
-            LightSource.GetComponent<Light>().intensity = 1.0f;
+            LightSource.GetComponent<Light>().intensity = 2.0f;
         }
         else
         {
-            LightSource.GetComponent<Light>().intensity = 0.1f;
+            LightSource.GetComponent<Light>().intensity = 0.0f;
         }
     }
 
@@ -415,7 +439,6 @@ public class UIControl : MonoBehaviour {
     {
         BackToPlanesBtn.SetActive(false);
         RemovelastObjBtn.SetActive(false);
-        ExitBuildModeBtn.SetActive(true);
     }
 
     void showThisObjEditButtons()
